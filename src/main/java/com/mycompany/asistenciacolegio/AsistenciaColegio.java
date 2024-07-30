@@ -33,18 +33,33 @@ public class AsistenciaColegio {
         try {
             statement = conexion.createStatement();
             // Esta parte es para saber si esta funcionando correctamente, van a ser cambiados posteriormente.
+            
             rs = statement.executeQuery("SELECT * FROM estudiante");
             while (rs.next()) {
                 // Mostrar los IDEstudiantes para verficar la conexion a la bd.
+                
                 System.out.println(rs.getString("estudianteId"));
             }
             // Insercion de datos
-            statement.execute("INSERT INTO `usuario` (`idUsuario`, `nombre`, `horario`, `rol`) VALUES ('0002', 'Nicolas', 'Lunes 8:30-16:30', 'Estudiante');");
+            
+            statement.execute("INSERT INTO `usuario` (`idUsuario`, `nombre`, `horario`, `rol`) VALUES ('0004', 'Jorge Garcia', 'Martes 6:30-12:30', 'Profesor');");
             // Mostrar el dato para saber si se inserto.
+            
             rs = statement.executeQuery("SELECT * FROM usuario");
             while (rs.next()) {
                 System.out.println(rs.getString("nombre"));
             }
+            // Actualizar dato
+            
+            statement.execute("UPDATE `usuario` SET `nombre` = 'Diana Gonzales' WHERE `idUsuario` = '0002'");
+            System.out.println("Datos actualizados correctamente.");
+
+            // Mostrar el dato actualizado para verificar.
+            rs = statement.executeQuery("SELECT * FROM usuario WHERE `idUsuario` = '0002'");
+            while (rs.next()) {
+                System.out.println(rs.getString("nombre"));
+            }
+           
         } catch (SQLException e) {
             // Mostrar un mensaje de error si alguna consulta falla.
             System.err.println("Error al ejecutar la consulta: " + e.getMessage());
