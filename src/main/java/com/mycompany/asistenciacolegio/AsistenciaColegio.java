@@ -42,7 +42,7 @@ public class AsistenciaColegio {
             }
             // Insercion de datos
             
-            statement.execute("INSERT INTO `usuario` (`idUsuario`, `nombre`, `horario`, `rol`) VALUES ('0004', 'Jorge Garcia', 'Martes 6:30-12:30', 'Profesor');");
+            //statement.execute("INSERT INTO `usuario` (`idUsuario`, `nombre`, `horario`, `rol`) VALUES ('0004', 'Jorge Garcia', 'Martes 6:30-12:30', 'Profesor');");
             // Mostrar el dato para saber si se inserto.
             
             rs = statement.executeQuery("SELECT * FROM usuario");
@@ -58,6 +58,16 @@ public class AsistenciaColegio {
             rs = statement.executeQuery("SELECT * FROM usuario WHERE `idUsuario` = '0002'");
             while (rs.next()) {
                 System.out.println(rs.getString("nombre"));
+            }
+            // Eliminacion de datos
+            
+            statement.execute("DELETE FROM `usuario` WHERE `idUsuario` = '0003'");
+            System.out.println("Datos eliminados correctamente.");
+            //Mostrar el dato para veficar si fue elimando. 
+            
+            rs = statement.executeQuery("SELECT * FROM usuario WHERE `idUsuario` = '0003'");
+            if (!rs.next()) {
+                System.out.println("El usuario con idUsuario = '0003' ha sido eliminado.");
             }
            
         } catch (SQLException e) {
